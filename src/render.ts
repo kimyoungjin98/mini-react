@@ -33,6 +33,13 @@ export function render(element: MiniReactNode, container: HTMLElement) {
       continue;
     }
 
+    // 이벤트 판별
+    if (key.startsWith("on") && typeof value === "function") {
+      const eventType = key.slice(2).toLowerCase();
+      domElement.addEventListener(eventType, value);
+      continue;
+    }
+
     // setAttribute로 속성 적용
     domElement.setAttribute(key, value);
   }
