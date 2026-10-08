@@ -24,7 +24,13 @@ export function render(element: MiniReactNode, container: HTMLElement) {
     return;
   }
 
-  // element가 MiniElement이면 DOM 만들기
+  // element가 FunctionComponent이면 DOM 만들기
+  if (element.type instanceof Function) {
+    const componentElement = element.type(element.props);
+    render(componentElement, container);
+    return;
+  }
+
   const domElement = document.createElement(element.type);
 
   // element.props에서 children을 제외한 속성을 setAttribute로 적용하기
