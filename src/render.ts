@@ -8,6 +8,7 @@
  */
 
 import type { MiniReactNode } from "./create-element";
+import { styleToString } from "./style";
 
 // 기댓값
 // render(
@@ -30,6 +31,19 @@ export function render(element: MiniReactNode, container: HTMLElement) {
   for (const [key, value] of Object.entries(element.props)) {
     // children는 이미 처리했으므로 건너뛰기
     if (key === "children") {
+      continue;
+    }
+
+    // style 판별
+    if (key === "style" && typeof value === "object") {
+      const styleString = styleToString(value);
+      domElement.setAttribute("style", styleString);
+      continue;
+    }
+
+    // className 판별
+    if (key === "className" && typeof value === "string") {
+      domElement.setAttribute("class", value);
       continue;
     }
 

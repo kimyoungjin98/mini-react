@@ -1,4 +1,14 @@
+import type { MiniElementStyle } from "./style";
+
 export type MiniReactNode = MiniElement | string;
+
+export type CreateElementProps = {
+  id?: string;
+  style?: MiniElementStyle;
+  className?: string;
+  children?: MiniReactNode[];
+  [key: string]: any;
+};
 
 /**
  * MiniElement 안에 MiniElement가 들어가는 재귀 타입 구조
@@ -13,7 +23,7 @@ export type MiniElement = {
 
 export function createElement(
   tag: string,
-  props?: Record<string, any> | null,
+  props?: CreateElementProps | null,
   ...children: MiniReactNode[]
 ): MiniElement {
   return {

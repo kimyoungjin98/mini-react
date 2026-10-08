@@ -8,8 +8,16 @@ if (dom) {
     "button",
     {
       onClick: () => alert("버튼 클릭!"),
-      style:
-        "margin-top:10px; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; max-width: 200px; width: 100%;",
+      id: "my-button",
+      style: {
+        backgroundColor: "blue",
+        color: "white",
+        padding: "10px 20px",
+        border: "none",
+        borderRadius: "10px",
+        cursor: "pointer",
+        marginTop: "10px",
+      },
     },
     "클릭",
   );
